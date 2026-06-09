@@ -13,3 +13,5 @@ def display_hash_table(result) :
 
     console = Console()
     console.print(table)
+
+    efadcxzwdefdvsf
