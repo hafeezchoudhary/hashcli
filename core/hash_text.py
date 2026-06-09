@@ -14,7 +14,3 @@ def hash_text(text) :
         "SHA512": hashed_sha512
     }
 
-if __name__ == "__main__" :
-    text = input()
-    print(hash_text(text))
-
