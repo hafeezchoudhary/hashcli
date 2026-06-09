@@ -4,3 +4,5 @@ from output.console_output import display_hash_table
 text = input()
 result = hash_text(text) 
 output = display_hash_table(result)
+
+Hafeez 
