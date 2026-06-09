@@ -13,4 +13,5 @@ def hash_text(text) :
         "SHA1": hashed_sha1,
         "SHA512": hashed_sha512
     }
+    
 
