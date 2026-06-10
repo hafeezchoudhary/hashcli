@@ -3,8 +3,8 @@ import hashlib
 def hash_text(text) :
 
     algorithms = {
-        "MD5": hashlib.md5,
         "SHA1": hashlib.sha1,
+        "MD5": hashlib.md5,
         "SHA256": hashlib.sha256,
         "SHA512": hashlib.sha512,
     } 
@@ -17,7 +17,6 @@ def hash_text(text) :
 
     return results
 
-    
 if __name__ == "__main__" :
     text = input()
     print(hash_text(text)) 
