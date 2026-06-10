@@ -18,7 +18,3 @@ def hash_text(text) :
         results[algorithm_name] = algorithm_function(encoded_text).hexdigest()
 
     return results 
-
-if __name__ == "__main__" :
-    text = input()
-    print(hash_text(text)) 
