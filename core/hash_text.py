@@ -1,4 +1,4 @@
-import hashlib
+import hashlib 
 
 def hash_text(text) :
 
@@ -9,13 +9,15 @@ def hash_text(text) :
         "SHA512": hashlib.sha512,
     } 
 
+
+
     results = {}
     encoded_text = text.encode()
 
-    for algorithm_name, algorith_function in algorithms.items() :
-        results[algorithm_name] = algorith_function(encoded_text).hexdigest()
+    for algorithm_name, algorithm_function in algorithms.items() :
+        results[algorithm_name] = algorithm_function(encoded_text).hexdigest()
 
-    return results
+    return results 
 
 if __name__ == "__main__" :
     text = input()
