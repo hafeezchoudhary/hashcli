@@ -18,7 +18,8 @@ def hash_file(path) :
 
         file.close() 
 
-
+if __name__ == "__main__" :
+    result = hash_file("tests/sample.txt")
 
 # print(type(data))
 # print(data)

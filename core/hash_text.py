@@ -9,8 +9,6 @@ def hash_text(text) :
         "SHA512": hashlib.sha512,
     } 
 
-
-
     results = {}
     encoded_text = text.encode()
 
