@@ -1,3 +1,4 @@
+import hashlib
 
 def hash_file(path) :
     with open(path, "rb") as file :
@@ -20,6 +21,4 @@ def hash_file(path) :
 
 if __name__ == "__main__" :
     result = hash_file("tests/sample.txt")
-
-# print(type(data))
-# print(data)
+    print(result) 
