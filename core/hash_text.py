@@ -6,7 +6,3 @@ def hash_text(text) :
     encoded_text = text.encode()
 
     return hash_bytes(encoded_text)
-
-if __name__ == "__main__" :
-    text = input()
-    print(hash_text(text))
