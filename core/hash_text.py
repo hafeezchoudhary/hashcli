@@ -1,18 +1,12 @@
 import hashlib 
+from core.hash_bytes import hash_bytes
 
-def hash_text(text) :
+def hash_text(text) : 
 
-    algorithms = {
-        "SHA1": hashlib.sha1,
-        "MD5": hashlib.md5,
-        "SHA256": hashlib.sha256,
-        "SHA512": hashlib.sha512,
-    } 
-
-    results = {}
     encoded_text = text.encode()
 
-    for algorithm_name, algorithm_function in algorithms.items() :
-        results[algorithm_name] = algorithm_function(encoded_text).hexdigest()
+    return hash_bytes(encoded_text)
 
-    return results 
+if __name__ == "__main__" :
+    text = input()
+    print(hash_text(text))
