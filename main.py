@@ -8,3 +8,4 @@ file_result = hash_file("tests/sample.txt")
 display_hash_table(text_result)  
 display_hash_table(file_result)  
 
+
