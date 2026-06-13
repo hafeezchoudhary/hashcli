@@ -11,7 +11,7 @@ def hash_bytes(data) :
     } 
 
     for algorithm_name, algorithm_function in algorithms.items() :
-        results[algorithm_name] = algorithm_function(data).hexdigest()
+        results[algorithm_name] = algorithm_function(data).hexdigest() 
 
     return results
 
