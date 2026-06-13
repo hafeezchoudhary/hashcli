@@ -16,9 +16,5 @@ def file(path: str) :
     file_result = hash_file(path) 
     display_hash_table(file_result)
 
-
 if __name__ == "__main__" :
     app() 
-    
-
-
