@@ -26,9 +26,7 @@ def verify_file(path: str, target_hash: str) :
 def verify_text(text:str, target_hash:str) :
     text_hash_result = hash_text(text)
     verification_result = verify_hash(text_hash_result, target_hash)
-    print(verification_result)
-
-
+    print(verification_result) 
 
 if __name__ == "__main__" :
     app() 
