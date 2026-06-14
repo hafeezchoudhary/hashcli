@@ -28,5 +28,7 @@ def verify_text(text:str, target_hash:str) :
     verification_result = verify_hash(text_hash_result, target_hash)
     print(verification_result)
 
+
+
 if __name__ == "__main__" :
     app() 
