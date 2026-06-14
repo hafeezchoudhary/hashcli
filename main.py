@@ -16,11 +16,17 @@ def file(path: str) :
     file_result = hash_file(path) 
     display_hash_table(file_result)
 
-@app.command() 
-def verify(path: str, target_hash: str) :
+@app.command(name = "verify-file") 
+def verify_file(path: str, target_hash: str) :
     file_hash_result = hash_file(path)  
     verification_result = verify_hash(file_hash_result, target_hash) 
-    print(verification_result )  
+    print(verification_result ) 
+
+@app.command(name = "verify-text") 
+def verify_text(text:str, target_hash:str) :
+    text_hash_result = hash_text(text)
+    verification_result = verify_hash(text_hash_result, target_hash)
+    print(verification_result)
 
 if __name__ == "__main__" :
     app() 
