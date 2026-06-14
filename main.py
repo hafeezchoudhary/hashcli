@@ -22,7 +22,5 @@ def verify(path: str, target_hash: str) :
     verification_result = verify_hash(file_hash_result, target_hash) 
     print(verification_result )  
 
-
-# 5d41402abc4b2a76b9719d911017c592
 if __name__ == "__main__" :
     app() 
