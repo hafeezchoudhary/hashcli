@@ -2,7 +2,8 @@ from core.hash_text import hash_text
 from output.console_output import display_hash_table 
 from core.hash_file import hash_file
 from core.verify_hash import verify_hash
-import typer
+from output.verification_output import display_verification_result
+import typer 
 
 
 app = typer.Typer()
@@ -20,13 +21,15 @@ def file(path: str) :
 def verify_file(path: str, target_hash: str) :
     file_hash_result = hash_file(path)  
     verification_result = verify_hash(file_hash_result, target_hash) 
-    print(verification_result ) 
+    display_verification_result(verification_result)
 
 @app.command(name = "verify-text") 
 def verify_text(text:str, target_hash:str) :
     text_hash_result = hash_text(text)
     verification_result = verify_hash(text_hash_result, target_hash)
-    print(verification_result) 
+    display_verification_result(verification_result)
+
+
 
 if __name__ == "__main__" :
     app() 
