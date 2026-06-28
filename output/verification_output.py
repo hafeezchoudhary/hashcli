@@ -26,6 +26,3 @@ def display_verification_result(verification_result) :
         
     console = Console()
     console.print(table) 
-
-if __name__ == "__main__" :
-    verification_result = verify_hash()
