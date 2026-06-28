@@ -15,7 +15,7 @@ def display_verification_result(verification_result) :
         "Algorithm": algorithm,
     }
 
-    table = Table(show_header=True, header_style="bold", show_lines=False, box=box.SIMPLE_HEAD)
+    table = Table(box=box.SIMPLE_HEAD)
     table.add_column("Property") 
     table.add_column("Value") 
 
