@@ -17,7 +17,6 @@ def file(path: str = typer.Argument(..., help="Path to the input file.")) :
     file_result = hash_file(path) 
     display_hash_table(file_result)
 
-
 @app.command(name = "verify-text", help="Verify a text string against a user-provided hash.") 
 def verify_text(text:str = typer.Argument(..., help="Text string to verify."), target_hash:str = typer.Argument(..., help="Hash value used for verification.")) :
     text_hash_result = hash_text(text)
