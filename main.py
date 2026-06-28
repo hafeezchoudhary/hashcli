@@ -17,10 +17,13 @@ def file(path: str = typer.Argument(..., help="Path to the input file.")) :
     try : 
         file_result = hash_file(path) 
         display_hash_table(file_result) 
+
     except FileNotFoundError :
         typer.echo(f"Error: File '{path}' not found.")
+
     except IsADirectoryError :
         typer.echo(f"Error: '{path}' is a directory, not a file.")
+        
     except PermissionError :
         typer.echo(f"Error: Permission denied while accessing '{path}'.") 
 
