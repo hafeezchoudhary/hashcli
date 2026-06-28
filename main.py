@@ -14,8 +14,15 @@ def text(text: str = typer.Argument(..., help="Text string to hash.")) :
 
 @app.command(help="Generate cryptographic hashes for the specified file.")
 def file(path: str = typer.Argument(..., help="Path to the input file.")) :
-    file_result = hash_file(path) 
-    display_hash_table(file_result) 
+    try : 
+        file_result = hash_file(path) 
+        display_hash_table(file_result) 
+    except FileNotFoundError :
+        typer.echo(f"Error: File '{path}' not found.")
+    except IsADirectoryError :
+        typer.echo(f"Error: '{path}' is a directory, not a file.")
+    except PermissionError :
+        typer.echo(f"Error: Permission denied while accessing '{path}'.") 
 
 @app.command(name = "verify-text", help="Verify a text string against a user-provided hash.") 
 def verify_text(text:str = typer.Argument(..., help="Text string to verify."), target_hash:str = typer.Argument(..., help="Hash value used for verification.")) :
