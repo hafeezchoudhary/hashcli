@@ -5,7 +5,7 @@ from hashcli.core.verify_hash import verify_hash
 from hashcli.output.verification_output import display_verification_result
 import typer 
 
-app = typer.Typer(help="HasCLI - Command-line utility for generating and verifying cryptographic hashes.")
+app = typer.Typer(help="HashCLI - Command-line utility for generating and verifying cryptographic hashes.")
 @app.command(help="Generate cryptographic hashes for the provided text input.") 
 def text(text: str = typer.Argument(..., help="Text string to hash.")) :
     text_result = hash_text(text)  

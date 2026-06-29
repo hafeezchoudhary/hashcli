@@ -1,3 +1,14 @@
-
+# Virtual environment
 .venv/
+
+# Python cache
 __pycache__/
+*.py[cod]
+
+# Packaging
+*.egg-info/
+build/
+dist/
+
+# Pytest
+.pytest_cache/

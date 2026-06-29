@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hashcli"
+version = "1.0.0"
+description = "Command-line utility for generating and verifying cryptographic hashes for text and files."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+
+dependencies = [
+    "typer>=0.16.0",
+    "rich>=14.0.0"
+]
+
+[project.scripts]
+hashcli = "hashcli.cli:app"
