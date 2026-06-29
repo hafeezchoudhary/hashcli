@@ -57,4 +57,3 @@ def verify_file(path: str = typer.Argument(..., help="Path to the input file."),
         
     except PermissionError :
         typer.secho(f"Error: Permission denied while accessing '{path}'.", fg=typer.colors.RED) 
-        

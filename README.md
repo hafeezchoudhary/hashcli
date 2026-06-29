@@ -1,7 +1,7 @@
 # HashCLI
 
 A lightweight command-line utility for generating and verifying cryptographic hashes for text and files.
-
+ 
 ## Features
 
 - Generate MD5, SHA-1, SHA-256 and SHA-512 hashes
