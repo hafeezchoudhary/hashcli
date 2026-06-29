@@ -2,7 +2,6 @@ from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
 from rich import box
-from core.verify_hash import verify_hash
 
 def display_verification_result(verification_result) :
 

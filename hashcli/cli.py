@@ -1,10 +1,9 @@
-from core.hash_text import hash_text 
-from output.console_output import display_hash_table 
-from core.hash_file import hash_file
-from core.verify_hash import verify_hash
-from output.verification_output import display_verification_result
+from hashcli.core.hash_text import hash_text 
+from hashcli.output.console_output import display_hash_table 
+from hashcli.core.hash_file import hash_file
+from hashcli.core.verify_hash import verify_hash
+from hashcli.output.verification_output import display_verification_result
 import typer 
-
 
 app = typer.Typer(help="HasCLI - Command-line utility for generating and verifying cryptographic hashes.")
 @app.command(help="Generate cryptographic hashes for the provided text input.") 
@@ -59,5 +58,3 @@ def verify_file(path: str = typer.Argument(..., help="Path to the input file."),
     except PermissionError :
         typer.secho(f"Error: Permission denied while accessing '{path}'.", fg=typer.colors.RED) 
         
-if __name__ == "__main__" :
-    app() 
