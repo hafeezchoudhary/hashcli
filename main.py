@@ -19,26 +19,45 @@ def file(path: str = typer.Argument(..., help="Path to the input file.")) :
         display_hash_table(file_result) 
 
     except FileNotFoundError :
-        typer.echo(f"Error: File '{path}' not found.")
+        typer.secho(f"Error: File '{path}' not found.", fg=typer.colors.RED)
 
     except IsADirectoryError :
-        typer.echo(f"Error: '{path}' is a directory, not a file.")
+        typer.secho(f"Error: '{path}' is a directory, not a file.", fg=typer.colors.RED)
         
     except PermissionError :
-        typer.echo(f"Error: Permission denied while accessing '{path}'.") 
+        typer.secho(f"Error: Permission denied while accessing '{path}'.", fg=typer.colors.RED) 
 
 @app.command(name = "verify-text", help="Verify a text string against a user-provided hash.") 
 def verify_text(text:str = typer.Argument(..., help="Text string to verify."), target_hash:str = typer.Argument(..., help="Hash value used for verification.")) :
-    text_hash_result = hash_text(text) 
-    verification_result = verify_hash(text_hash_result, target_hash) 
-    display_verification_result(verification_result) 
+    try :
+        text_hash_result = hash_text(text) 
+        verification_result = verify_hash(text_hash_result, target_hash) 
+        display_verification_result(verification_result) 
+    
+    except FileNotFoundError :
+        typer.secho(f"Error: File '{path}' not found.", fg=typer.colors.RED)
+
+    except IsADirectoryError :
+        typer.secho(f"Error: '{path}' is a directory, not a file.", fg=typer.colors.RED)
+        
+    except PermissionError :
+        typer.secho(f"Error: Permission denied while accessing '{path}'.", fg=typer.colors.RED) 
 
 @app.command(name = "verify-file", help="Verify a file against a user-provided hash.") 
 def verify_file(path: str = typer.Argument(..., help="Path to the input file."), target_hash: str = typer.Argument(..., help="Hash value used for verification.")) :
-    file_hash_result = hash_file(path)   
-    verification_result = verify_hash(file_hash_result, target_hash) 
-    display_verification_result(verification_result) 
+    try : 
+        file_hash_result = hash_file(path)   
+        verification_result = verify_hash(file_hash_result, target_hash) 
+        display_verification_result(verification_result) 
 
+    except FileNotFoundError :
+        typer.secho(f"Error: File '{path}' not found.", fg=typer.colors.RED)
 
+    except IsADirectoryError :
+        typer.secho(f"Error: '{path}' is a directory, not a file.", fg=typer.colors.RED)
+        
+    except PermissionError :
+        typer.secho(f"Error: Permission denied while accessing '{path}'.", fg=typer.colors.RED) 
+        
 if __name__ == "__main__" :
     app() 
