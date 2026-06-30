@@ -64,6 +64,8 @@ hashtool --detect 185f8db32271fe25f561a6fc938b2e264306ec304eda518007d17648263819
 - SHA-256
 - SHA-512
 
+> **Note:** MD5 and SHA-1 are supported for compatibility and educational purposes. For modern security applications, use SHA-256 or SHA-512 instead.
+
 ## Technologies
 
 - Python

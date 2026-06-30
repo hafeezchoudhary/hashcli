@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "hashtool"
 version = "1.0.1"
-description = "Command-line utility for generating and verifying cryptographic hashes for text and files."
+description = "Command-line utility for generating, verifying, and detecting cryptographic hashes."
 readme = "README.md"
 requires-python = ">=3.10"
 license = {file = "LICENSE"}
