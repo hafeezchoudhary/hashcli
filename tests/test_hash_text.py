@@ -1,4 +1,4 @@
-from hashcli.core.hash_text import hash_text
+from hashtool.core.hash_text import hash_text
 
 def test_hash_text_SHA1():
     result = hash_text("नमस्ते")

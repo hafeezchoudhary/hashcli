@@ -1,4 +1,4 @@
-# HashCLI
+# HashTool
 
 A lightweight command-line utility for generating and verifying cryptographic hashes for text and files.
  

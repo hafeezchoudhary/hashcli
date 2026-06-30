@@ -2,11 +2,11 @@ import typer
 
 def print_help() :
     typer.echo("""
-    HashCLI 1.0.0
+    HashTool 1.0.0
     Copyright (c) 2026 Hafeez Choudhary
     
     Usage:
-        hashcli [OPTIONS]
+        hashtool [OPTIONS]
 
     Description:
         Generate, verify, and inspect cryptographic hashes for text and files.
@@ -23,26 +23,26 @@ def print_help() :
     Examples:
 
         Hash text
-            hashcli -t "hello"
+            hashtool -t "hello"
 
         Hash file
-            hashcli -f sample.txt
+            hashtool -f sample.txt
 
         Hash using specific algorithm
-            hashcli -t "hello" -a sha256
+            hashtool -t "hello" -a sha256
 
         Hash using multiple algorithms
-            hashcli -t "hello" -a md5,sha256
+            hashtool -t "hello" -a md5,sha256
 
         Verify text
-            hashcli -t "hello" --verify 5d41402abc4b2a76b9719d911017c592
+            hashtool -t "hello" --verify 5d41402abc4b2a76b9719d911017c592
 
         Verify file
-            hashcli -f sample.txt --verify <HASH>
+            hashtool -f sample.txt --verify <HASH>
 
         Verify using specific algorithm
-            hashcli -t "hello" --verify <HASH> -a sha256
+            hashtool -t "hello" --verify <HASH> -a sha256
 
         Detect hash algorithm
-            hashcli --detect 5d41402abc4b2a76b9719d911017c592
+            hashtool --detect 5d41402abc4b2a76b9719d911017c592
         """)

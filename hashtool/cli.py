@@ -1,14 +1,14 @@
-from hashcli.core.hash_text import hash_text 
-from hashcli.output.console_output import display_hash_table 
-from hashcli.core.hash_file import hash_file
-from hashcli.core.verify_hash import verify_hash
-from hashcli.output.verification_output import display_verification_result
-from hashcli.core.detect_algorithm import detect_algorithm
-from hashcli.output.detect_output import display_detect_result
-from hashcli.output.help_output import print_help
+from hashtool.core.hash_text import hash_text 
+from hashtool.output.console_output import display_hash_table 
+from hashtool.core.hash_file import hash_file
+from hashtool.core.verify_hash import verify_hash
+from hashtool.output.verification_output import display_verification_result
+from hashtool.core.detect_algorithm import detect_algorithm
+from hashtool.output.detect_output import display_detect_result
+from hashtool.output.help_output import print_help
 import typer 
 
-app = typer.Typer(help="HashCLI - Command-line utility for generating and verifying cryptographic hashes.")
+app = typer.Typer(help="HashTool - Command-line utility for generating and verifying cryptographic hashes.")
 
 @app.callback(invoke_without_command=True)
 def main(
@@ -126,6 +126,7 @@ def main(
             raise typer.Exit(code=1)
 
     #------------------Detect algorithm------------------
+    
     if detect :
         detect_result = detect_algorithm(detect)
         display_detect_result(detect_result)
