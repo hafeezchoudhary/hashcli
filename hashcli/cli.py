@@ -3,6 +3,8 @@ from hashcli.output.console_output import display_hash_table
 from hashcli.core.hash_file import hash_file
 from hashcli.core.verify_hash import verify_hash
 from hashcli.output.verification_output import display_verification_result
+from hashcli.core.detect_algorithm import detect_algorithm
+from hashcli.output.detect_output import display_detect_result
 import typer 
 
 app = typer.Typer(help="HashCLI - Command-line utility for generating and verifying cryptographic hashes.")
@@ -32,16 +34,22 @@ def main(
         "--algorithm",
         "-a",
         help="Hash algorithm(s) to use."
+    ), 
+    detect: str = typer.Option(
+        None,
+        "--detect",
+        "-d",
+        help="Detect algorithm(s)."
     )
 ) :
 
     # ---------------- Validation ---------------- #
 
-    if text and path:
+    if text and path and detect:
         typer.secho("Error: Use either --text (-t) or --file (-f), not both.", fg=typer.colors.RED)
         raise typer.Exit(code=1)
 
-    if not text and not path:
+    if not text and not path and not detect:
         typer.secho("Error: Please provide either --text (-t) or --file (-f).", fg=typer.colors.RED)
         raise typer.Exit(code=1)
 
@@ -102,3 +110,8 @@ def main(
         except PermissionError:
             typer.secho(f"Error: Permission denied while accessing '{path}'.", fg=typer.colors.RED)
             raise typer.Exit(code=1)
+
+    #------------------Detect algorithm------------------
+    if detect :
+        detect_result = detect_algorithm(detect)
+        display_detect_result(detect_result)
