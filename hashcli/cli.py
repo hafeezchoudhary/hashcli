@@ -6,54 +6,78 @@ from hashcli.output.verification_output import display_verification_result
 import typer 
 
 app = typer.Typer(help="HashCLI - Command-line utility for generating and verifying cryptographic hashes.")
-@app.command(help="Generate cryptographic hashes for the provided text input.") 
-def text(text: str = typer.Argument(..., help="Text string to hash.")) :
-    text_result = hash_text(text)  
-    display_hash_table(text_result) 
 
-@app.command(help="Generate cryptographic hashes for the specified file.")
-def file(path: str = typer.Argument(..., help="Path to the input file.")) :
-    try : 
-        file_result = hash_file(path) 
-        display_hash_table(file_result) 
+@app.callback(invoke_without_command=True)
+def main(
+    text: str = typer.Option(
+        None,
+        "--text",
+        "-t",
+        help="Text string to hash.",
+    ),
+    path: str = typer.Option(
+        None,
+        "--file",
+        "-f",
+        help="Path to the input file.",
+    ),
+    verify: str = typer.Option(
+        None,
+        "--verify",
+        "-v",
+        help="Verify a generated hash.",
+    ),
+) :
 
-    except FileNotFoundError :
-        typer.secho(f"Error: File '{path}' not found.", fg=typer.colors.RED)
+    # ---------------- Validation ---------------- #
 
-    except IsADirectoryError :
-        typer.secho(f"Error: '{path}' is a directory, not a file.", fg=typer.colors.RED)
-        
-    except PermissionError :
-        typer.secho(f"Error: Permission denied while accessing '{path}'.", fg=typer.colors.RED) 
+    if text and path:
+        typer.secho(
+            "Error: Use either --text (-t) or --file (-f), not both.",
+            fg=typer.colors.RED,
+        )
+        raise typer.Exit(code=1)
 
-@app.command(name = "verify-text", help="Verify a text string against a user-provided hash.") 
-def verify_text(text:str = typer.Argument(..., help="Text string to verify."), target_hash:str = typer.Argument(..., help="Hash value used for verification.")) :
-    try :
-        text_hash_result = hash_text(text) 
-        verification_result = verify_hash(text_hash_result, target_hash) 
-        display_verification_result(verification_result) 
-    
-    except FileNotFoundError :
-        typer.secho(f"Error: File '{path}' not found.", fg=typer.colors.RED)
+    if not text and not path:
+        typer.secho(
+            "Error: Please provide either --text (-t) or --file (-f).",
+            fg=typer.colors.RED,
+        )
+        raise typer.Exit(code=1)
 
-    except IsADirectoryError :
-        typer.secho(f"Error: '{path}' is a directory, not a file.", fg=typer.colors.RED)
-        
-    except PermissionError :
-        typer.secho(f"Error: Permission denied while accessing '{path}'.", fg=typer.colors.RED) 
+    # ---------------- TEXT ---------------- #
 
-@app.command(name = "verify-file", help="Verify a file against a user-provided hash.") 
-def verify_file(path: str = typer.Argument(..., help="Path to the input file."), target_hash: str = typer.Argument(..., help="Hash value used for verification.")) :
-    try : 
-        file_hash_result = hash_file(path)   
-        verification_result = verify_hash(file_hash_result, target_hash) 
-        display_verification_result(verification_result) 
+    if text:
+        text_result = hash_text(text)
 
-    except FileNotFoundError :
-        typer.secho(f"Error: File '{path}' not found.", fg=typer.colors.RED)
+        if verify:
+            verification_result = verify_hash(text_result, verify)
+            display_verification_result(verification_result)
 
-    except IsADirectoryError :
-        typer.secho(f"Error: '{path}' is a directory, not a file.", fg=typer.colors.RED)
-        
-    except PermissionError :
-        typer.secho(f"Error: Permission denied while accessing '{path}'.", fg=typer.colors.RED) 
+        else:
+            display_hash_table(text_result)
+
+    # ---------------- FILE ---------------- #
+
+    elif path:
+        try:
+            file_result = hash_file(path)
+
+            if verify:
+                verification_result = verify_hash(file_result, verify)
+                display_verification_result(verification_result)
+
+            else:
+                display_hash_table(file_result)
+
+        except FileNotFoundError:
+            typer.secho(f"Error: File '{path}' not found.", fg=typer.colors.RED)
+            raise typer.Exit(code=1)
+
+        except IsADirectoryError:
+            typer.secho(f"Error: '{path}' is a directory, not a file.", fg=typer.colors.RED)
+            raise typer.Exit(code=1)
+
+        except PermissionError:
+            typer.secho(f"Error: Permission denied while accessing '{path}'.", fg=typer.colors.RED)
+            raise typer.Exit(code=1)

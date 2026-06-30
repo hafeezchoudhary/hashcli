@@ -1,9 +1,10 @@
 from rich.console import Console
 from rich.table import Table
+from rich import box
 
 
 def display_hash_table(result) : 
-    table = Table(title = "Hash Results")
+    table = Table(title = "Hash Results", box=box.SIMPLE_HEAD)
 
     table.add_column("Algorithm", style="green")
     table.add_column("Hash", overflow="fold")
