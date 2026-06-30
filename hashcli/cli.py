@@ -32,17 +32,11 @@ def main(
     # ---------------- Validation ---------------- #
 
     if text and path:
-        typer.secho(
-            "Error: Use either --text (-t) or --file (-f), not both.",
-            fg=typer.colors.RED,
-        )
+        typer.secho("Error: Use either --text (-t) or --file (-f), not both.", fg=typer.colors.RED)
         raise typer.Exit(code=1)
 
     if not text and not path:
-        typer.secho(
-            "Error: Please provide either --text (-t) or --file (-f).",
-            fg=typer.colors.RED,
-        )
+        typer.secho("Error: Please provide either --text (-t) or --file (-f).", fg=typer.colors.RED)
         raise typer.Exit(code=1)
 
     # ---------------- TEXT ---------------- #
