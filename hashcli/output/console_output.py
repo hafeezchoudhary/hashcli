@@ -12,6 +12,6 @@ def display_hash_table(result) :
     for algorithm, hash_value in result.items() :
         table.add_row(algorithm, hash_value) 
 
-    console = Console()
-    console.print(table)
+    console = Console() 
+    console.print(table) 
 

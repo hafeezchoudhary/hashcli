@@ -27,6 +27,12 @@ def main(
         "-v",
         help="Verify a generated hash.",
     ),
+    algorithm: str = typer.Option(
+        None,
+        "--algorithm",
+        "-a",
+        help="Hash algorithm(s) to use."
+    )
 ) :
 
     # ---------------- Validation ---------------- #
@@ -41,8 +47,29 @@ def main(
 
     # ---------------- TEXT ---------------- #
 
+
+    selected_algorithms = (
+        [alg.strip().lower() for alg in algorithm.split(",")]
+        if algorithm
+        else None
+    )
+
+    SUPPORTED_ALGORITHMS = {
+        "md5",
+        "sha1",
+        "sha256",
+        "sha512",
+    }
+
+    if selected_algorithms:
+        for alg in selected_algorithms:
+            if alg not in SUPPORTED_ALGORITHMS:
+                typer.secho(f"Error: Unsupported algorithm '{alg}'.", fg=typer.colors.RED)
+                typer.echo("Supported algorithms: md5, sha1, sha256, sha512")
+                raise typer.Exit(code=1)
+
     if text:
-        text_result = hash_text(text)
+        text_result = hash_text(text, selected_algorithms)
 
         if verify:
             verification_result = verify_hash(text_result, verify)
@@ -55,7 +82,7 @@ def main(
 
     elif path:
         try:
-            file_result = hash_file(path)
+            file_result = hash_file(path, selected_algorithms)
 
             if verify:
                 verification_result = verify_hash(file_result, verify)
