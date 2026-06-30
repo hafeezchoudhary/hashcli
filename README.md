@@ -1,29 +1,68 @@
 # HashTool
 
-A lightweight command-line utility for generating and verifying cryptographic hashes for text and files.
- 
+A lightweight command-line utility for generating, verifying, and detecting cryptographic hashes for text and files.
+
 ## Features
 
-- Generate MD5, SHA-1, SHA-256 and SHA-512 hashes
+- Generate MD5, SHA-1, SHA-256, and SHA-512 hashes
 - Hash text input
 - Hash files
 - Verify hashes
+- Detect possible hash algorithms
+- Select one or multiple hashing algorithms
 - Rich terminal output
 - Built with Typer
 
 ## Installation
 
-pip install hascli
+```bash
+pip install hashtool
+```
 
 ## Usage
 
-hascli text "Hello"
+### Hash text
 
-hascli file sample.txt
+```bash
+hashtool -t "Hello"
+```
 
-hascli verify-text "Hello" HASH
+### Hash file
 
-hascli verify-file sample.txt HASH
+```bash
+hashtool -f sample.txt
+```
+
+### Hash using a specific algorithm
+
+```bash
+hashtool -t "Hello" -a sha256
+```
+
+### Hash using multiple algorithms
+
+```bash
+hashtool -t "Hello" -a md5,sha256
+```
+
+### Verify a hash
+
+```bash
+hashtool -t "Hello" --verify 185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969
+```
+
+### Detect possible algorithm
+
+```bash
+hashtool --detect 185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969
+```
+
+## Supported Algorithms
+
+- MD5
+- SHA-1
+- SHA-256
+- SHA-512
 
 ## Technologies
 
@@ -34,4 +73,4 @@ hascli verify-file sample.txt HASH
 
 ## License
 
-MIT 
+MIT License
