@@ -5,6 +5,7 @@ from hashcli.core.verify_hash import verify_hash
 from hashcli.output.verification_output import display_verification_result
 from hashcli.core.detect_algorithm import detect_algorithm
 from hashcli.output.detect_output import display_detect_result
+from hashcli.output.help_output import print_help
 import typer 
 
 app = typer.Typer(help="HashCLI - Command-line utility for generating and verifying cryptographic hashes.")
@@ -40,17 +41,30 @@ def main(
         "--detect",
         "-d",
         help="Detect algorithm(s)."
+    ),
+    help_option: bool = typer.Option(
+        False,
+        "--help",
+        "-h",
+        help="Show help message and exit.",
     )
 ) :
 
+    if help_option:
+        print_help()
+        raise typer.Exit()
+
     # ---------------- Validation ---------------- #
 
-    if text and path and detect:
+    if text and path:
         typer.secho("Error: Use either --text (-t) or --file (-f), not both.", fg=typer.colors.RED)
         raise typer.Exit(code=1)
+    if detect and (text or path) :
+        typer.secho("Error: --detect (-d) cannot be used with --text (-t) or --file (-f).", fg=typer.colors.RED)
+        raise typer.Exit(code=1) 
 
     if not text and not path and not detect:
-        typer.secho("Error: Please provide either --text (-t) or --file (-f).", fg=typer.colors.RED)
+        typer.secho("Error: Please provide either --text (-t), --file (-f) or --detect (-d).", fg=typer.colors.RED)
         raise typer.Exit(code=1)
 
     # ---------------- TEXT ---------------- #
